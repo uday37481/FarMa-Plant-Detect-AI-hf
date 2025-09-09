@@ -1,0 +1,71 @@
+{
+  "navigation": {
+    "home": "Home",
+    "detect": "Detect",
+    "tips": "Tips",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Smart Crop Care AI",
+    "description": "Upload a clear photo of your plant to receive instant AI-powered diagnosis and actionable treatment recommendations. Keep your crops healthy with FarMA.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "stats": {
+    "diseasesDetected": "Diseases Detected",
+    "accuracyRate": "Accuracy Rate",
+    "available": "Available"
+  },
+  "upload": {
+    "title": "Disease Detection",
+    "description": "Drag and drop a clear photo of your plant leaf or select from your device. Supported formats: JPG, PNG, WebP.",
+    "dragAndDrop": "Drag and drop your plant image here",
+    "chooseImage": "Choose Image",
+    "analyzing": "Analyzing...",
+    "uploadDifferent": "Upload Different Image",
+    "tipsForBetter": "Tips for Better Results"
+  },
+  "results": {
+    "title": "Detection Results",
+    "confidence": "Confidence",
+    "description": "Description",
+    "treatment": "Treatment Plan",
+    "preventionTips": "Prevention Tips",
+    "detectAnother": "Detect Another Plant"
+  },
+  "tips": {
+    "title": "Crop Health Tips",
+    "featuredTip": "Featured Tip"
+  },
+  "about": {
+    "title": "About FarMA",
+    "description": "FarMA leverages AI and modern computer vision to provide accurate plant disease detection directly from leaf photos. Our goal is to empower growers with fast, actionable insights.",
+    "supportedCrops": "Supported Crops & Diseases",
+    "technologyResearch": "Technology & Research"
+  },
+  "contact": {
+    "title": "Contact & Support",
+    "sendMessage": "Send us a Message",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "sendMessageBtn": "Send Message",
+    "faq": "Frequently Asked Questions"
+  },
+  "dashboard": {
+    "title": "Analytics Dashboard",
+    "totalScans": "Total Scans",
+    "healthyPlants": "Healthy Plants",
+    "commonDiseases": "Most Common Diseases",
+    "cropHealthSummary": "Crop Health Summary",
+    "keyInsights": "Key Insights"
+  },
+  "footer": {
+    "getInTouch": "Get in Touch",
+    "quickLinks": "Quick Links",
+    "allRightsReserved": "All rights reserved"
+  }
+}
