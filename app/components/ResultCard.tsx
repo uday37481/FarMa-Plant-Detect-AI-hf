@@ -5,17 +5,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import type { DetectionResult } from "@/data/mock-results"
-import type { Language } from "@/data/translations"
-import { translations } from "@/data/translations"
 
-interface ResultCardProps {
+export default function ResultCard({
+  result,
+  onNewDetection,
+}: {
   result: DetectionResult
   onNewDetection: () => void
-  language: Language
-}
-
-export default function ResultCard({ result, onNewDetection, language }: ResultCardProps) {
-  const t = translations[language]
+}) {
   const isHealthy = result.disease.toLowerCase().includes("healthy")
 
   const colors: Record<DetectionResult["severity"], string> = {
@@ -37,10 +34,10 @@ export default function ResultCard({ result, onNewDetection, language }: ResultC
           <div className="flex items-center justify-between">
             <CardTitle className="text-2xl font-bold text-gray-800 flex items-center">
               <Icon />
-              <span className="ml-2">{t.detectionResults}</span>
+              <span className="ml-2">Detection Results</span>
             </CardTitle>
             <Badge variant="secondary" className="bg-blue-100 text-blue-800 text-lg px-3 py-1">
-              {result.confidence}% {t.confidence}
+              {result.confidence}% Confidence
             </Badge>
           </div>
         </CardHeader>
@@ -57,7 +54,7 @@ export default function ResultCard({ result, onNewDetection, language }: ResultC
           <div className="bg-white p-4 rounded-lg border border-gray-200">
             <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
               <Info className="h-4 w-4 mr-2" />
-              {t.description}
+              Description
             </h4>
             <p className="text-gray-700 leading-relaxed">{result.description}</p>
           </div>
@@ -67,7 +64,7 @@ export default function ResultCard({ result, onNewDetection, language }: ResultC
           >
             <h4 className={`font-semibold mb-2 flex items-center ${isHealthy ? "text-green-800" : "text-red-800"}`}>
               <Lightbulb className="h-4 w-4 mr-2" />
-              {isHealthy ? "Care Recommendations" : t.treatment}
+              {isHealthy ? "Care Recommendations" : "Treatment Plan"}
             </h4>
             <p className={`${isHealthy ? "text-green-700" : "text-red-700"}`}>{result.treatment}</p>
           </div>
@@ -78,7 +75,7 @@ export default function ResultCard({ result, onNewDetection, language }: ResultC
         <CardHeader>
           <CardTitle className="text-blue-800 flex items-center">
             <CheckCircle className="h-5 w-5 mr-2" />
-            {t.preventionTips}
+            Prevention Tips
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -100,7 +97,7 @@ export default function ResultCard({ result, onNewDetection, language }: ResultC
           className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <RotateCcw className="h-5 w-5 mr-2" />
-          {t.detectAnother}
+          Detect Another Plant
         </Button>
       </div>
     </div>

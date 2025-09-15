@@ -6,15 +6,14 @@ import { Button } from "@/components/ui/button"
 import LanguageSwitcher from "./LanguageSwitcher"
 import type { Language } from "@/data/translations"
 import { translations } from "@/data/translations"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
 
 const nav = [
-  { id: "hero", label: "home", href: "/" },
-  { id: "upload", label: "detect", href: "/#upload" },
-  { id: "tips", label: "tips", href: "/#tips" },
-  { id: "about", label: "about", href: "/#about" },
-  { id: "contact", label: "contact", href: "/contact" },
+  { id: "hero", label: "home" },
+  { id: "upload", label: "detect" },
+  { id: "tips", label: "tips" },
+  { id: "dashboard", label: "dashboard" },
+  { id: "about", label: "about" },
+  { id: "contact", label: "contact" },
 ]
 
 interface HeaderProps {
@@ -25,7 +24,6 @@ interface HeaderProps {
 export default function Header({ language, onLanguageChange }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const [elev, setElev] = useState(false)
-  const pathname = usePathname()
   const t = translations[language]
 
   useEffect(() => {
@@ -34,16 +32,8 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const handleNavigation = (item: (typeof nav)[0]) => {
-    if (item.href.startsWith("/#")) {
-      // Handle anchor links on home page
-      if (pathname !== "/") {
-        window.location.href = item.href
-      } else {
-        const elementId = item.href.replace("/#", "")
-        document.getElementById(elementId)?.scrollIntoView({ behavior: "smooth", block: "start" })
-      }
-    }
+  const go = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
     setOpen(false)
   }
 
@@ -54,34 +44,27 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
       aria-label="Site Header"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2" aria-label="FarMA Home" title="FarMA Home">
+        <button
+          onClick={() => go("hero")}
+          className="flex items-center space-x-2"
+          aria-label="FarMA Home"
+          title="FarMA Home"
+        >
           <Leaf className="h-8 w-8 text-green-600" aria-hidden="true" />
           <span className="text-2xl font-bold text-green-800">FarMA</span>
-        </Link>
+        </button>
 
         <div className="flex items-center space-x-4">
           <nav className="hidden md:flex gap-8" aria-label="Primary">
-            {nav.map((n) =>
-              n.href.startsWith("/#") ? (
-                <button
-                  key={n.id}
-                  onClick={() => handleNavigation(n)}
-                  className="text-green-700 hover:text-green-900 font-medium transition-colors"
-                >
-                  {t[n.label as keyof typeof t]}
-                </button>
-              ) : (
-                <Link
-                  key={n.id}
-                  href={n.href}
-                  className={`text-green-700 hover:text-green-900 font-medium transition-colors ${
-                    pathname === n.href ? "text-green-900 font-semibold" : ""
-                  }`}
-                >
-                  {t[n.label as keyof typeof t]}
-                </Link>
-              ),
-            )}
+            {nav.map((n) => (
+              <button
+                key={n.id}
+                onClick={() => go(n.id)}
+                className="text-green-700 hover:text-green-900 font-medium transition-colors"
+              >
+                {t[n.label as keyof typeof t]}
+              </button>
+            ))}
           </nav>
 
           <LanguageSwitcher currentLanguage={language} onLanguageChange={onLanguageChange} />
@@ -109,28 +92,15 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
         }`}
       >
         <nav className="px-4 pb-4 space-y-2" aria-label="Mobile Primary">
-          {nav.map((n) =>
-            n.href.startsWith("/#") ? (
-              <button
-                key={n.id}
-                onClick={() => handleNavigation(n)}
-                className="w-full text-left px-3 py-2 rounded-md font-medium text-green-700 hover:bg-green-50"
-              >
-                {t[n.label as keyof typeof t]}
-              </button>
-            ) : (
-              <Link
-                key={n.id}
-                href={n.href}
-                className={`block w-full text-left px-3 py-2 rounded-md font-medium text-green-700 hover:bg-green-50 ${
-                  pathname === n.href ? "bg-green-50 text-green-900 font-semibold" : ""
-                }`}
-                onClick={() => setOpen(false)}
-              >
-                {t[n.label as keyof typeof t]}
-              </Link>
-            ),
-          )}
+          {nav.map((n) => (
+            <button
+              key={n.id}
+              onClick={() => go(n.id)}
+              className="w-full text-left px-3 py-2 rounded-md font-medium text-green-700 hover:bg-green-50"
+            >
+              {t[n.label as keyof typeof t]}
+            </button>
+          ))}
         </nav>
       </div>
     </header>

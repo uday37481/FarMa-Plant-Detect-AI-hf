@@ -5,8 +5,6 @@ import { useState } from "react"
 import { Droplets, Sun, Shield, Leaf, Thermometer, Calendar, ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import type { Language } from "@/data/translations"
-import { translations } from "@/data/translations"
 
 interface HealthTip {
   title: string
@@ -16,12 +14,7 @@ interface HealthTip {
   season: string
 }
 
-interface CropHealthTipsProps {
-  language: Language
-}
-
-export default function CropHealthTips({ language }: CropHealthTipsProps) {
-  const t = translations[language]
+export default function CropHealthTips() {
   const [currentTipIndex, setCurrentTipIndex] = useState(0)
 
   const healthTips: HealthTip[] = [
@@ -79,7 +72,7 @@ export default function CropHealthTips({ language }: CropHealthTipsProps) {
     <section id="tips" className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">{t.cropHealthTips}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">Crop Health Tips</h2>
           <p className="text-lg text-green-600 max-w-2xl mx-auto">
             Featured tips and best practices to keep your plants healthy and disease-free.
           </p>
@@ -90,7 +83,7 @@ export default function CropHealthTips({ language }: CropHealthTipsProps) {
           <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl font-bold text-green-800">{t.featuredTip}</CardTitle>
+                <CardTitle className="text-2xl font-bold text-green-800">Featured Tip</CardTitle>
                 <div className="flex space-x-2">
                   <Button
                     variant="outline"

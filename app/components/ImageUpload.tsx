@@ -8,15 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import ResultCard from "./ResultCard"
 import { type DetectionResult, MOCK_RESULTS } from "@/data/mock-results"
-import type { Language } from "@/data/translations"
-import { translations } from "@/data/translations"
 
-interface ImageUploadProps {
-  language: Language
-}
-
-export default function ImageUpload({ language }: ImageUploadProps) {
-  const t = translations[language]
+export default function ImageUpload() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [result, setResult] = useState<DetectionResult | null>(null)
@@ -92,8 +85,11 @@ export default function ImageUpload({ language }: ImageUploadProps) {
     <section id="upload" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">{t.diseaseDetection}</h2>
-          <p className="text-lg text-green-600 max-w-2xl mx-auto">{t.uploadDescription}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">Disease Detection</h2>
+          <p className="text-lg text-green-600 max-w-2xl mx-auto">
+            Drag and drop a clear photo of your plant leaf or select from your device. Supported formats: JPG, PNG,
+            WebP.
+          </p>
         </div>
 
         <Card className="mb-8 border-2 border-dashed border-green-200 hover:border-green-300 transition-colors">
@@ -132,7 +128,7 @@ export default function ImageUpload({ language }: ImageUploadProps) {
                       >
                         <div className="text-white text-center">
                           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
-                          <p className="text-sm">{t.analyzing}</p>
+                          <p className="text-sm">Analyzing...</p>
                         </div>
                       </div>
                     )}
@@ -160,7 +156,7 @@ export default function ImageUpload({ language }: ImageUploadProps) {
                     aria-disabled={isAnalyzing}
                   >
                     <RotateCcw className="h-4 w-4 mr-2" />
-                    {t.uploadDifferent}
+                    Upload Different Image
                   </Button>
                 </div>
               ) : (
@@ -170,7 +166,7 @@ export default function ImageUpload({ language }: ImageUploadProps) {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-green-800 mb-2">{t.dragAndDrop}</h3>
+                    <h3 className="text-xl font-semibold text-green-800 mb-2">Drag and drop your plant image here</h3>
                     <p className="text-green-600 mb-4">or click the button below to browse files</p>
                     <p className="text-sm text-green-500">Max size: 10MB</p>
                   </div>
@@ -193,7 +189,7 @@ export default function ImageUpload({ language }: ImageUploadProps) {
                       className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <Camera className="h-5 w-5 mr-2" />
-                      {t.chooseImage}
+                      Choose Image
                     </Button>
                   </div>
                 </div>
@@ -202,13 +198,13 @@ export default function ImageUpload({ language }: ImageUploadProps) {
           </CardContent>
         </Card>
 
-        {result && <ResultCard result={result} onNewDetection={reset} language={language} />}
+        {result && <ResultCard result={result} onNewDetection={reset} />}
 
         <Card className="bg-green-50 border-green-200">
           <CardHeader>
             <CardTitle className="text-green-800 flex items-center">
               <AlertCircle className="h-5 w-5 mr-2" />
-              {t.tipsForBetter}
+              Tips for Better Results
             </CardTitle>
           </CardHeader>
           <CardContent>

@@ -3,27 +3,22 @@
 import { Award } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { crops } from "@/data/crops"
-import type { Language } from "@/data/translations"
-import { translations } from "@/data/translations"
 
-interface AboutProps {
-  language: Language
-}
-
-export default function About({ language }: AboutProps) {
-  const t = translations[language]
-
+export default function About() {
   return (
     <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">{t.aboutFarma}</h2>
-          <p className="text-lg text-green-600 max-w-3xl mx-auto leading-relaxed">{t.aboutDescription}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">About FarMA</h2>
+          <p className="text-lg text-green-600 max-w-3xl mx-auto leading-relaxed">
+            FarMA leverages AI and modern computer vision to provide accurate plant disease detection directly from leaf
+            photos. Our goal is to empower growers with fast, actionable insights.
+          </p>
         </div>
 
         {/* Supported Crops with Images */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-green-800 mb-8 text-center">{t.supportedCrops}</h3>
+          <h3 className="text-2xl font-bold text-green-800 mb-8 text-center">Supported Crops & Diseases</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {crops.map((crop) => (
               <Card key={crop.name} className="group hover:shadow-md transition-all border-green-100 overflow-hidden">
@@ -48,7 +43,7 @@ export default function About({ language }: AboutProps) {
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-green-800 text-center flex items-center justify-center">
               <Award className="h-6 w-6 mr-2" />
-              {t.technologyResearch}
+              Technology & Research
             </CardTitle>
           </CardHeader>
           <CardContent>

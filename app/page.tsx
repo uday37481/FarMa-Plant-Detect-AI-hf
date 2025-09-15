@@ -5,10 +5,10 @@ import Header from "./components/Header"
 import Hero from "./components/Hero"
 import ImageUpload from "./components/ImageUpload"
 import CropHealthTips from "./components/CropHealthTips"
+import Dashboard from "./components/Dashboard"
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
-import AIAssistant from "./components/AIAssistant"
 import FadeIn from "./components/fade-in"
 import type { Language } from "@/data/translations"
 
@@ -29,6 +29,9 @@ export default function App() {
           <CropHealthTips language={language} />
         </FadeIn>
         <FadeIn delay={0.1}>
+          <Dashboard language={language} />
+        </FadeIn>
+        <FadeIn delay={0.1}>
           <About language={language} />
         </FadeIn>
         <FadeIn delay={0.1}>
@@ -36,7 +39,6 @@ export default function App() {
         </FadeIn>
       </main>
       <Footer language={language} />
-      <AIAssistant language={language} />
     </div>
   )
 }

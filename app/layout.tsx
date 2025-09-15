@@ -1,26 +1,25 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { LanguageProvider } from "./components/LanguageProvider"
-
-const inter = Inter({ subsets: ["latin"] })
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "FarMA - AI-Powered Plant Disease Detection",
-  description: "Smart crop care with AI-powered plant disease detection and treatment recommendations",
-    generator: 'v0.app'
+  title: 'v0 App',
+  description: 'Created with v0',
+  generator: 'v0.app',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <LanguageProvider>{children}</LanguageProvider>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+        {children}
+        <Analytics />
       </body>
     </html>
   )
